@@ -35,7 +35,7 @@ class Cart extends React.Component {
         return <div>
                 Total { this.state.total.toLocaleString('da-DK') } { this.state.currency }
                 <div>
-                    <button>Submit</button>
+                    <button onClick={ this.props.submitCart(this.state.products) }>Submit</button>
                 </div>
             </div>
     }
@@ -52,4 +52,14 @@ const stateProps = (state) => (
     }
 )
 
-export default connect(stateProps)(Cart);
+const dispatchProps = (dispatch) => (
+    {
+        submitCart: (products) => dispatch({
+            type: 'SUBMIT_CART',
+            products
+        })
+    }
+)
+
+export default connect(stateProps,
+    dispatchProps)(Cart);

@@ -9,3 +9,11 @@ export const addToCart = (product, group) => (
         group
     }
 )
+
+const SUBMIT_CART = 'SUBMIT_CART'
+export const submitCart = (products) => (
+    {
+        type: 'SUBMIT_CART',
+        products
+    }
+)
