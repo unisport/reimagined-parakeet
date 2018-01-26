@@ -2,9 +2,10 @@
  *
  */
 const ADD_TO_CART = 'ADD_TO_CART'
-export const addToCart = (id) => (
+export const addToCart = (product, group) => (
     {
         type: 'ADD_TO_CART',
-        id
+        product,
+        group
     }
 )

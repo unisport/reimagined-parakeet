@@ -15,7 +15,7 @@ const Product = (props) => {
     // console.log(props)
     return <div>
             <h4>{ props.name }</h4>
-            <button onClick={(e) => console.log(e)}>Select</button>
+            <button onClick={ props.onSelect.bind(this, props.id) }>Select</button>
         </div>
 }
 

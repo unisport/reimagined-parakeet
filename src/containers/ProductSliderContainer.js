@@ -6,9 +6,10 @@
  * @param {string} title
  *
  * State
- * @selectedProduct
+ * @product
  */
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Product from './../components/Product'
 
@@ -20,9 +21,21 @@ class ProductSliderContainer extends React.Component {
             choices: props.choices,
             id: props.id,
             title: props.title,
-            product: 0
+            selectedProduct: 0,
+            products: new Map()
         }
         this.handleSelect = this.handleSelect.bind(this)
+    }
+
+    componentDidMount() {
+        let map = this.state.products
+
+        this.props.choices.map(choices =>
+            choices.products.map(product =>
+                map.set(product.id, product)
+            )
+        )
+        this.setState({products: map})
     }
 
     arrayToMap(arr) {
@@ -35,14 +48,15 @@ class ProductSliderContainer extends React.Component {
         return map
     }
 
-    handleSelect(e) {
-        console.log(e)
+    handleSelect(id) {
+        this.setState({selectedProduct: id})
+        this.props.addToCart(this.state.products.get(id), this.state.id)
     }
 
     render() {
-        let productMap = this.arrayToMap(this.state.choices)
         let products = []
-        productMap.forEach((val, key) => {
+
+        this.state.products.forEach((val, key) => {
             products.push(<li key={ key }>
                 <Product {...val} onSelect={ this.handleSelect } />
             </li>)
@@ -53,10 +67,25 @@ class ProductSliderContainer extends React.Component {
                 <ul>{ products }</ul>
                 <div>
                     <h4>Selected Product</h4>
-                    
+                    { this.state.products.has(this.state.selectedProduct) &&
+                        <div>
+                            <img src={ this.state.products.get(this.state.selectedProduct).image } />
+                        </div>
+                    }
                 </div>
             </div>
     }
 }
 
-export default ProductSliderContainer;
+const dispatchProps = (dispatch) => {
+    return {
+        addToCart: (product, group) => dispatch({
+            type: 'ADD_TO_CART',
+            product,
+            group
+        })
+    }
+}
+
+export default connect(null,
+    dispatchProps)(ProductSliderContainer);

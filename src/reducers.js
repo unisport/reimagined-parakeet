@@ -18,7 +18,7 @@ const settings = (state = {}, action) => {
             return state
         case 'RECEIVE_SETTINGS':
             return {
-                currency: action.cyrrency,
+                currency: action.currency,
                 locale: action.locale,
                 vat: action.vat
             }
@@ -30,8 +30,25 @@ const cart = (state = [], action) => {
         default:
             return state
         case 'ADD_TO_CART':
-            console.log(action)
-            return state
+            let product = Object.assign({}, action.product)
+            let group = action.group
+
+            let index = state.findIndex((p) => {
+                console.log(p)
+                return p.group == group
+            })
+            if (index == -1) {
+                return [
+                    ...state,
+                    {group, ...product}
+                ]
+            } else {
+                return [
+                    ...state.slice(0, index),
+                    {group, ...product},
+                    ...state.slice(index + 1)
+                ]
+            }
     }
 }
 

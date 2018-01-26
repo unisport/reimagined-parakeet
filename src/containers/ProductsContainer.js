@@ -20,8 +20,13 @@ class ProductsContainer extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (this.state.products.length > 0) {
+            this.setState({loading: false})
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
-        // When the middleware has received products new props will arrive
         if(this.state.products.length < nextProps.products.length) {
             this.setState({
                 products: nextProps.products,
@@ -31,10 +36,12 @@ class ProductsContainer extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className="product-slideri-outer">
             <div>{ this.state.loading ? 'Loading' : 'Done' }</div>
+                <div className="product-slider-inner">
                 { this.state.products.map((props, i) =>
                     <ProductSliderContainer {...props} key={ i } />) }
+                </div>
             </div>
     }
 }

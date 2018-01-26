@@ -22,7 +22,8 @@ const initialState = {
         currency: '',
         locale: '',
         vat: ''
-    }
+    },
+    cart: []
 }
 
 const store = createStore(

@@ -14,6 +14,7 @@ import { Provider } from 'react-redux'
 import ProductsContainer from './containers/ProductsContainer'
 import SizesContainer from './containers/SizesContainer'
 import CustomisationContainer from './containers/CustomisationContainer'
+import Cart from './components/Cart'
 
 import store from './store'
 
@@ -36,6 +37,9 @@ const Main = () => (
             <Route exact path="/sizes" component={ SizesContainer } />
             <Route exact path="/customisation" component={ CustomisationContainer } />
         </main>
+            <section>
+                <Cart />
+            </section>
         </section>
     </Router>
 )
