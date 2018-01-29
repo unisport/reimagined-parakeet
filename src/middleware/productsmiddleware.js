@@ -22,7 +22,7 @@ const ProductsMiddleware = store => next => action => {
                 store.dispatch(actions.receiveProducts(resp.data.subgroups))
             })
     }
-
+    // TODO: should go to sizes middleware
     if (action.type == 'REQUEST_SIZES') {
         axios.get(PRODUCT_SIZES).then(resp =>
             store.dispatch(actions.receiveSizes(resp.data.subgroups))

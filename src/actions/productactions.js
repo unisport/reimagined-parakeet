@@ -35,9 +35,9 @@ export const requestSizes = () => (
 )
 
 const RECEIVE_SIZES = 'RECEIVE_SIZES'
-export const receiveSizes = (products) => (
+export const receiveSizes = (sizes) => (
     {
         type: RECEIVE_SIZES,
-        products
+        sizes
     }
 )

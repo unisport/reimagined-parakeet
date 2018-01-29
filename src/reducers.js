@@ -9,11 +9,17 @@ const products = (state = [], action) => {
             return state
         case 'RECEIVE_PRODUCTS':
             return action.products
-        case 'RECEIVE_SIZES':
-            console.log(action.products)
-            return action.products
     }
 };
+
+const sizes = (state = [], action) => {
+    switch(action.type) {
+        default:
+            return state
+        case 'RECEIVE_SIZES':
+            return action.sizes
+    }
+}
 
 const settings = (state = {}, action) => {
     switch(action.type) {
@@ -56,6 +62,7 @@ const cart = (state = [], action) => {
 
 const reducers = combineReducers({
     products,
+    sizes,
     settings,
     cart
 })

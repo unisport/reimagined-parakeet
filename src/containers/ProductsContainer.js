@@ -38,7 +38,6 @@ class ProductsContainer extends React.Component {
 
     render() {
         let products = this.state.products.choices
-        // console.log(this.state.products)
 
         return <div className="product-slider-outer">
             <div>{ this.state.loading ? 'Loading' : 'Done' }</div>
@@ -70,8 +69,12 @@ const mapStateToProps = (state) => (
     }
 )
 
-const mapDispatchToProps = dispatch => {
-    return {}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        requestProducts: () => dispatch({
+            type: REQUEST_PRODUCTS
+        })
+    }
 }
 
 export default connect(

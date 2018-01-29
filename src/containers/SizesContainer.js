@@ -4,8 +4,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import store from './../store'
-import * as actions from './../actions/productactions'
+import * as actions from './../actions/sizesactions'
 
 class SizesContainer extends React.Component {
 
@@ -30,12 +29,6 @@ class SizesContainer extends React.Component {
         return "Sizes"
     }
 }
-/**
- * Store.dispatch(iREQUEST_PRODUCTS)
- * Dispatches REQUEST_PRODUCTS which is then caugth by
- * the middleware
- */
-// store.dispatch(actions.requestSizes())
 
 const mapStateToProps = (state) => (
     {

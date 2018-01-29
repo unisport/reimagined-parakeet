@@ -19,6 +19,7 @@ import reducers from './reducers'
 
 const initialState = {
     products: [],
+    sizes: [],
     settings: {
         currency: '',
         locale: '',
