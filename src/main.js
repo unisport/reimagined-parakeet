@@ -9,6 +9,7 @@ import {
     Link,
     withRouter
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import ProductsContainer from './containers/ProductsContainer'
 import SizesContainer from './containers/SizesContainer'
@@ -16,6 +17,10 @@ import CustomisationContainer from './containers/CustomisationContainer'
 import Cart from './components/Cart'
 
 const Main = (props) => {
+    const handleSubmit = e => {
+        props.submitCart()
+    }
+
     return (
         <section>
             <header>
@@ -34,11 +39,19 @@ const Main = (props) => {
             </main>
             <aside>
                 <Cart>
-                    <button>Submit</button>
+                    <button onClick={ handleSubmit }>Submit</button>
                 </Cart>
             </aside>
         </section>
     )
 }
 
-export default withRouter(Main)
+const mapDispatch = dispatch => {
+    return {
+        submitCart: () => dispatch({
+            type: 'SUBMIT_CART'
+        })
+    }
+}
+
+export default withRouter(connect(null, mapDispatch)(Main))
