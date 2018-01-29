@@ -27404,15 +27404,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  *
  */
-var PRODUCTS_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/services/product_groups/select/';
+var SELECT_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/services/product_groups/select/';
 
 var CartMiddleware = function CartMiddleware(store) {
     return function (next) {
         return function (action) {
-            if (action == 'SUBMIT_CART') {
+
+            if (action.type == 'SUBMIT_CART') {
                 var params = {
                     'customer_selected': {}
                 };
+                action.products.forEach(function (product, i) {
+                    return params.customer_selected[i] = {
+                        'choice_id': product.group,
+                        'product_id': product.id
+                    };
+                });
+
+                _axios2.default.post(SELECT_URL, params).then(function (resp) {
+                    return console.log(resp);
+                });
             }
 
             next(action);
@@ -27512,7 +27523,6 @@ var cart = function cart() {
             var group = action.group;
 
             var index = state.findIndex(function (p) {
-                console.log(p);
                 return p.group == group;
             });
             if (index == -1) {
@@ -27858,6 +27868,10 @@ var Cart = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this, props));
 
+        _this.handleClick = function (e) {
+            _this.props.submitCart(_this.state.products);
+        };
+
         _this.state = {
             total: 0,
             currency: 'DKK',
@@ -27895,7 +27909,7 @@ var Cart = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         'button',
-                        { onClick: this.props.submitCart(this.state.products) },
+                        { onClick: this.handleClick.bind(this) },
                         'Submit'
                     )
                 )

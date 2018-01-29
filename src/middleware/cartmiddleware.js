@@ -5,15 +5,24 @@ import axios from 'axios'
 
 import * as actions from './../actions/cartactions'
 
-const PRODUCTS_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/services/product_groups/select/'
+const SELECT_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/services/product_groups/select/'
 
 const CartMiddleware = store => next => action => {
-    if (action == 'SUBMIT_CART') {
+
+    if (action.type == 'SUBMIT_CART') {
         let params = {
-            'customer_selected': {
-                
-            }
+            'customer_selected': {}
         }
+        action.products.forEach((product, i) =>
+            params.customer_selected[i] = {
+                'choice_id': product.group,
+                'product_id': product.id
+            }
+        )
+
+        axios.post(SELECT_URL, params).then((resp) =>
+            console.log(resp)
+        )
     }
 
     next(action);

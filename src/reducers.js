@@ -34,7 +34,6 @@ const cart = (state = [], action) => {
             let group = action.group
 
             let index = state.findIndex((p) => {
-                console.log(p)
                 return p.group == group
             })
             if (index == -1) {

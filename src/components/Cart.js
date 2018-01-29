@@ -31,11 +31,15 @@ class Cart extends React.Component {
         })
     }
 
+    handleClick = (e) => {
+        this.props.submitCart(this.state.products)
+    }
+
     render() {
         return <div className="cart-inner">
                 Total { this.state.total.toLocaleString('da-DK') } { this.state.currency }
                 <div>
-                    <button onClick={ this.props.submitCart(this.state.products) }>Submit</button>
+                    <button onClick={ this.handleClick.bind(this) }>Submit</button>
                 </div>
             </div>
     }
