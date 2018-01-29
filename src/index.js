@@ -37,9 +37,9 @@ const Main = () => (
             <Route exact path="/sizes" component={ SizesContainer } />
             <Route exact path="/customisation" component={ CustomisationContainer } />
         </main>
-            <section>
+            <aside>
                 <Cart />
-            </section>
+            </aside>
         </section>
     </Router>
 )

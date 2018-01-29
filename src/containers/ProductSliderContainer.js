@@ -1,7 +1,6 @@
 /**
  * ProductSliderContainer
  * @constructor
- * @param {array} choices
  * @param {number} id
  * @param {string} title
  *
@@ -18,7 +17,6 @@ class ProductSliderContainer extends React.Component {
         super(props)
 
         this.state = {
-            choices: props.choices,
             id: props.id,
             title: props.title,
             selectedProduct: 0,
@@ -29,23 +27,12 @@ class ProductSliderContainer extends React.Component {
 
     componentDidMount() {
         let map = this.state.products
+        // console.log(this.props.products)
 
-        this.props.choices.map(choices =>
-            choices.products.map(product =>
-                map.set(product.id, product)
-            )
+        this.props.products.map(product =>
+            map.set(product.id, product)
         )
         this.setState({products: map})
-    }
-
-    arrayToMap(arr) {
-        let map = new Map()
-        arr.map(choices =>
-            choices.products.map(product =>
-                map.set(product.id, product)
-            )
-        )
-        return map
     }
 
     handleSelect(id) {
@@ -57,15 +44,14 @@ class ProductSliderContainer extends React.Component {
         let products = []
 
         this.state.products.forEach((val, key) => {
-            products.push(<li key={ key }>
+            products.push(<li key={ key } className="product-item">
                 <Product {...val} onSelect={ this.handleSelect } />
             </li>)
         })
 
-        return <div>
-                <header><h3>{ this.state.title }</h3></header>
-                <ul>{ products }</ul>
-                <div>
+        return <div className="product-list-wrapper">
+                <ul className="product-list">{ products }</ul>
+                <div className="product-selected-item">
                     <h4>Selected Product</h4>
                     { this.state.products.has(this.state.selectedProduct) &&
                         <div>

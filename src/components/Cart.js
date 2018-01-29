@@ -32,7 +32,7 @@ class Cart extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className="cart-inner">
                 Total { this.state.total.toLocaleString('da-DK') } { this.state.currency }
                 <div>
                     <button onClick={ this.props.submitCart(this.state.products) }>Submit</button>

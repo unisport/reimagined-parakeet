@@ -32,15 +32,26 @@ class ProductsContainer extends React.Component {
                 products: nextProps.products,
                 loading: false
             })
+            // console.log(nextProps.products)
         }
     }
 
     render() {
-        return <div className="product-slideri-outer">
+        let products = this.state.products.choices
+        // console.log(this.state.products)
+
+        return <div className="product-slider-outer">
             <div>{ this.state.loading ? 'Loading' : 'Done' }</div>
                 <div className="product-slider-inner">
                 { this.state.products.map((props, i) =>
-                    <ProductSliderContainer {...props} key={ i } />) }
+                    <div key={i}>
+                    <header><h3>{ props.title }</h3></header>
+                    { props.choices.map((choices, j) =>
+                        <ProductSliderContainer key={ j } products={ choices.products }
+                            id={ choices.id} />
+                    )}
+                    </div>
+                )}
                 </div>
             </div>
     }
