@@ -27,20 +27,20 @@ const NoMatch = () => <div>No match</div>
 const Main = () => (
     <Router>
         <section>
-        <header>
-            <nav>
-                <ul>
-                    <li><Link to="/">Products</Link></li>
-                    <li><Link to="/sizes">Sizes</Link></li>
-                    <li><Link to="/customisation">Customisation</Link></li>
-                </ul>
-            </nav> 
-        </header>
-        <main>
-            <Route exact path="/" component={ ProductsContainer } />
-            <Route exact path="/sizes" component={ SizesContainer } />
-            <Route exact path="/customisation" component={ CustomisationContainer } />
-        </main>
+            <header>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Products</Link></li>
+                        <li><Link to="/sizes">Sizes</Link></li>
+                        <li><Link to="/customisation">Customisation</Link></li>
+                    </ul>
+                </nav> 
+            </header>
+            <main>
+                <Route exact path="/" component={ ProductsContainer } />
+                <Route exact path="/sizes" component={ SizesContainer } />
+                <Route exact path="/customisation" component={ CustomisationContainer } />
+            </main>
             <aside>
                 <Cart />
             </aside>

@@ -38,30 +38,18 @@ const cart = (state = [], action) => {
     switch(action.type) {
         default:
             return state
-        case 'ADD_TO_CART':
-            let product = Object.assign({
-                quantity: 1,
-                sizes: []
-            }, action.product)
-            let group = action.group
-
-            let index = state.findIndex((p) => {
-                return p.group == group
-            })
-            if (index == -1) {
-                return [
-                    ...state,
-                    {group, ...product}
-                ]
-            } else {
-                return [
-                    ...state.slice(0, index),
-                    {group, ...product},
-                    ...state.slice(index + 1)
-                ]
-            }
-        case 'UPDATE_CART':
-            return state
+        case 'ADD_ITEM_TO_CART':
+            return [
+                ...state.filter((product) =>
+                    product.choice_id != action.product.choice_id
+                ),
+                {...action.product, quantity: 1, sizes: []}
+            ]
+        case 'REMOVE_CART_ITEM':
+            return [
+                ...state.filter((product) =>
+                    product.choice_id != action.choice_id)
+            ]
     }
 }
 

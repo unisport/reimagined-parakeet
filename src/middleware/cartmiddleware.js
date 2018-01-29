@@ -10,20 +10,20 @@ const SELECT_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/
 const CartMiddleware = store => next => action => {
 
     if (action.type == 'SUBMIT_CART') {
+        let cart = store.getState().cart
         let params = {
             'customer_selected': {}
         }
-        action.products.forEach((product, i) =>
+        cart.forEach((product, i) =>
             params.customer_selected[i] = {
-                'choice_id': product.group,
-                'product_id': product.id
+                choice_id: product.choice_id,
+                product_id: product.id
             }
         )
-
         /* axios.post(SELECT_URL, params).then((resp) =>
             console.log(resp)
         )*/
-        console.log('submitting', params)
+        // console.log('submitting', params)
     }
 
     next(action);

@@ -10,6 +10,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import * as actions from './../actions/cartactions'
 import Product from './../components/Product'
 
 class ProductSliderContainer extends React.Component {
@@ -23,11 +24,11 @@ class ProductSliderContainer extends React.Component {
             products: new Map()
         }
         this.handleSelect = this.handleSelect.bind(this)
+        this.handleRemove = this.handleRemove.bind(this)
     }
 
     componentDidMount() {
         let map = this.state.products
-        // console.log(this.props.products)
 
         this.props.products.map(product =>
             map.set(product.id, product)
@@ -36,9 +37,16 @@ class ProductSliderContainer extends React.Component {
     }
 
     handleSelect(id) {
-        let product = Object.assign({}, this.state.products.get(id))
+        let product = Object.assign({
+            choice_id: this.state.id
+        }, this.state.products.get(id))
         this.setState({selectedProduct: product.id})
-        this.props.addToCart(product, this.state.id)
+        this.props.addToCart(product)
+    }
+
+    handleRemove() {
+        this.props.removeFromCart(this.state.id)
+        this.setState({selectedProduct: 0})
     }
 
     render() {
@@ -57,6 +65,7 @@ class ProductSliderContainer extends React.Component {
                     { this.state.products.has(this.state.selectedProduct) &&
                         <div>
                             <img src={ this.state.products.get(this.state.selectedProduct).image } />
+                            <button onClick={ this.handleRemove }>X</button>
                         </div>
                     }
                 </div>
@@ -66,10 +75,13 @@ class ProductSliderContainer extends React.Component {
 
 const dispatchProps = (dispatch) => {
     return {
-        addToCart: (product, group) => dispatch({
-            type: 'ADD_TO_CART',
-            product,
-            group
+        addToCart: (product) => dispatch({
+            type: 'ADD_ITEM_TO_CART',
+            product
+        }),
+        removeFromCart: (choice_id) => dispatch({
+            type: 'REMOVE_CART_ITEM',
+            choice_id
         })
     }
 }

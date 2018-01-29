@@ -1,27 +1,34 @@
 /**
  *
  */
-const ADD_TO_CART = 'ADD_TO_CART'
-export const addToCart = (product, group) => (
+const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
+export const addItemToCart = (product) => (
     {
-        type: 'ADD_TO_CART',
+        type: ADD_ITEM_TO_CART,
         product,
         group
     }
 )
 
 const SUBMIT_CART = 'SUBMIT_CART'
-export const submitCart = (products) => (
+export const submitCart = () => (
     {
-        type: 'SUBMIT_CART',
-        products
+        type: SUBMIT_CART
     }
 )
 
-const UPDATE_CART = 'UPDATE_CART'
+const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM'
 export const updateCart = (product) => (
     {
-        type: 'UPDATE_PRODUCT',
+        type: UPDATE_CART_ITEM,
         product
+    }
+)
+
+const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM'
+export const removeCartItem = (choice_id) => (
+    {
+        type: REMOVE_CART_ITEM,
+        choice_id
     }
 )

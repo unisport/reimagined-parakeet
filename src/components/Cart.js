@@ -32,7 +32,7 @@ class Cart extends React.Component {
     }
 
     handleClick = (e) => {
-        this.props.submitCart(this.state.products)
+        this.props.submitCart()
     }
 
     render() {
@@ -60,9 +60,8 @@ const stateProps = (state) => (
 
 const dispatchProps = (dispatch) => (
     {
-        submitCart: (products) => dispatch({
-            type: 'SUBMIT_CART',
-            products
+        submitCart: () => dispatch({
+            type: 'SUBMIT_CART'
         })
     }
 )
