@@ -4,10 +4,13 @@
 import axios from 'axios'
 
 import * as actions from './../actions/productactions'
-
-const PRODUCTS_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/services/product_groups/1/'
+import {
+    PRODUCT_SIZES,
+    PRODUCTS_URL
+} from './../urls'
 
 const ProductsMiddleware = store => next => action => {
+    
     if (action.type == 'REQUEST_PRODUCTS') {
         axios.get(PRODUCTS_URL)
             .then(resp => {
@@ -19,6 +22,13 @@ const ProductsMiddleware = store => next => action => {
                 store.dispatch(actions.receiveProducts(resp.data.subgroups))
             })
     }
+
+    if (action.type == 'REQUEST_SIZES') {
+        axios.get(PRODUCT_SIZES).then(resp =>
+            store.dispatch(actions.receiveSizes(resp.data.subgroups))
+        ) 
+    }
+
     // Always call next inside middleware
     next(action);
 }

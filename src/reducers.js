@@ -9,6 +9,9 @@ const products = (state = [], action) => {
             return state
         case 'RECEIVE_PRODUCTS':
             return action.products
+        case 'RECEIVE_SIZES':
+            console.log(action.products)
+            return action.products
     }
 };
 

@@ -36,8 +36,9 @@ class ProductSliderContainer extends React.Component {
     }
 
     handleSelect(id) {
-        this.setState({selectedProduct: id})
-        this.props.addToCart(this.state.products.get(id), this.state.id)
+        let product = Object.assign({quantity: 1}, this.state.products.get(id))
+        this.setState({selectedProduct: product.id})
+        this.props.addToCart(product, this.state.id)
     }
 
     render() {

@@ -20,9 +20,9 @@ const CartMiddleware = store => next => action => {
             }
         )
 
-        axios.post(SELECT_URL, params).then((resp) =>
+        /* axios.post(SELECT_URL, params).then((resp) =>
             console.log(resp)
-        )
+        )*/
     }
 
     next(action);

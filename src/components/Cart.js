@@ -21,7 +21,7 @@ class Cart extends React.Component {
     componentWillReceiveProps(nextProps) {
         let total = 0
         nextProps.cart.forEach((p) => {
-            total += p.unit_net_price
+            total += (p.unit_net_price * p.quantity)
         })
 
         this.setState({
@@ -44,7 +44,9 @@ class Cart extends React.Component {
             </div>
     }
 }
-
+/**
+ * Experimental
+ */
 store.subscribe(() => {
     // console.log(store.getState().cart)
 })
