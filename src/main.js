@@ -19,6 +19,12 @@ import Cart from './components/Cart'
 const Main = (props) => {
     const handleSubmit = e => {
         props.submitCart()
+        if (props.routes.includes(props.match.path)) {
+            let indx = props.routes.findIndex((path) => 
+                path == props.match.path
+            )
+            props.history.push(props.routes[indx + 1])
+        }
     }
 
     return (
