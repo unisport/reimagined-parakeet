@@ -50,6 +50,19 @@ const cart = (state = [], action) => {
                 ...state.filter((product) =>
                     product.choice_id != action.choice_id)
             ]
+        case 'UPDATE_CART_ITEM':
+            let product = state.find((p) =>
+                p.id == action.productId
+            )
+            product.sizes.push({id: action.sizeId, quantity: action.quantity})
+            product.quantity += action.quantity
+
+            return [
+                ...state.filter((p) =>
+                    p.id != product.id
+                ),
+                product
+            ]
     }
 }
 

@@ -33,7 +33,7 @@ class SizeList extends React.Component {
 const mapDispatch = (dispatch) => (
     {
         updateCart: (sizeId, quantity, productId) => dispatch({
-            type: 'UPDATE_CART',
+            type: 'UPDATE_CART_ITEM',
             sizeId,
             quantity,
             productId

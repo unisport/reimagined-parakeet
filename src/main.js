@@ -1,7 +1,6 @@
 /**
  *
  */
-import { render } from 'react-dom'
 import React from 'react'
 import {
     HashRouter as Router,
@@ -10,31 +9,11 @@ import {
     Link,
     withRouter
 } from 'react-router-dom'
-import { Provider } from 'react-redux'
 
 import ProductsContainer from './containers/ProductsContainer'
 import SizesContainer from './containers/SizesContainer'
 import CustomisationContainer from './containers/CustomisationContainer'
 import Cart from './components/Cart'
-
-import store from './store'
-
-const NoMatch = () => <div>No match</div>
-
-const paths = [
-    '/',
-    '/sizes',
-    '/customisation'
-]
-/**
- * Experimental
- */
-store.subscribe(() => {
-    let title = ""
-    document.title = `${title} - Teamsport`
-
-    // console.log(store)
-})
 
 const Main = (props) => {
     return (
@@ -62,17 +41,4 @@ const Main = (props) => {
     )
 }
 
-const App = (props) => {
-    return (
-        <Router>
-            <Main />
-        </Router>
-    )
-}
-
-render(
-    <Provider store={ store }>
-        <App />
-    </Provider>,
-    document.getElementById('app-root')
-)
+export default withRouter(Main)

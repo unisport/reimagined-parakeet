@@ -21,7 +21,7 @@ class Cart extends React.Component {
     componentWillReceiveProps(nextProps) {
         let total = 0
         nextProps.cart.forEach((p) => {
-            total += (p.unit_net_price * p.quantity)
+            total += ((p.unit_net_price / 100) * p.quantity)
         })
 
         this.setState({
@@ -39,7 +39,7 @@ class Cart extends React.Component {
         return <div className="cart-inner">
                 Total { this.state.total.toLocaleString('da-DK') } { this.state.currency }
                 <div>
-                    <button onClick={ this.handleClick.bind(this) }>Submit</button>
+                    { this.props.children }
                 </div>
             </div>
     }
@@ -66,5 +66,4 @@ const dispatchProps = (dispatch) => (
     }
 )
 
-export default connect(stateProps,
-    dispatchProps)(Cart);
+export default connect(stateProps)(Cart);
