@@ -12,7 +12,8 @@ class SizesContainer extends React.Component {
         super(props)
 
         this.state = {
-            products: props.products
+            sizes: props.sizes,
+            loading: true
         }
     }
 
@@ -21,18 +22,23 @@ class SizesContainer extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({products: nextProps.products})
+        if (nextProps.sizes.length > 0) {
+            this.setState({
+                sizes: nextProps.sizes,
+                loading: false
+            })
+        }
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.state.sizes)
         return "Sizes"
     }
 }
 
 const mapStateToProps = (state) => (
     {
-        products: state.products,
+        sizes: state.sizes,
         loading: true
     }
 )
