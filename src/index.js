@@ -18,6 +18,10 @@ import Cart from './components/Cart'
 
 import store from './store'
 
+store.subscribe(() => {
+    let title = "" 
+})
+
 const NoMatch = () => <div>No match</div>
 
 const Main = () => (

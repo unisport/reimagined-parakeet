@@ -6,8 +6,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import store from './../store'
 import * as actions from './../actions/productactions'
+import store from './../store'
 
 import ProductSliderContainer from './ProductSliderContainer'
 
@@ -32,7 +32,6 @@ class ProductsContainer extends React.Component {
                 products: nextProps.products,
                 loading: false
             })
-            // console.log(nextProps.products)
         }
     }
 
@@ -55,11 +54,7 @@ class ProductsContainer extends React.Component {
             </div>
     }
 }
-/**
- * Store.dispatch(iREQUEST_PRODUCTS)
- * Dispatches REQUEST_PRODUCTS which is then caugth by
- * the middleware
- */
+
 store.dispatch(actions.requestProducts())
 
 const mapStateToProps = (state) => (

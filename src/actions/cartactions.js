@@ -17,3 +17,11 @@ export const submitCart = (products) => (
         products
     }
 )
+
+const UPDATE_CART = 'UPDATE_CART'
+export const updateCart = (product) => (
+    {
+        type: 'UPDATE_PRODUCT',
+        product
+    }
+)

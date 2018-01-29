@@ -39,7 +39,10 @@ const cart = (state = [], action) => {
         default:
             return state
         case 'ADD_TO_CART':
-            let product = Object.assign({}, action.product)
+            let product = Object.assign({
+                quantity: 1,
+                sizes: []
+            }, action.product)
             let group = action.group
 
             let index = state.findIndex((p) => {
@@ -57,6 +60,8 @@ const cart = (state = [], action) => {
                     ...state.slice(index + 1)
                 ]
             }
+        case 'UPDATE_CART':
+            return state
     }
 }
 

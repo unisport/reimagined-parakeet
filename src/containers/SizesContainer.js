@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 
 import * as actions from './../actions/sizesactions'
 
+import SizeList from './../components/SizeList'
+
 class SizesContainer extends React.Component {
 
     constructor(props) {
@@ -31,8 +33,20 @@ class SizesContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state.sizes)
-        return "Sizes"
+        let sizes = this.state.sizes.map((size, i) =>
+            <div key={ i }>
+                <header>{ size.title }</header>
+                { size.products.map((product, j) =>
+                    <div key={ j }>
+                        <h4>{ product.name }</h4>
+                    { product.sizes.map((size, k) =>
+                        <SizeList {...size} key={ k } productId={ product.id } />
+                    )}
+                    </div>
+                )}
+            </div>
+        )
+        return <div>{ sizes }</div>
     }
 }
 

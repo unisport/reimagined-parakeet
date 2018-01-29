@@ -12,7 +12,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Product = (props) => {
-    // console.log(props)
     return <div>
             <h4>{ props.name }</h4>
             <button onClick={ props.onSelect.bind(this, props.id) }>Select</button>
