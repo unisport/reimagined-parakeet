@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import ProductsContainer from './containers/ProductsContainer'
+import ChoicesContainer from './containers/ChoicesContainer'
 import SizesContainer from './containers/SizesContainer'
 import CustomisationContainer from './containers/CustomisationContainer'
 import Cart from './components/Cart'
@@ -45,14 +45,14 @@ const Main = (props) => {
             <header>
                 <nav>
                     <ul>
-                        <li><Link to="/">Products</Link></li>
+                        <li><Link to="/">Choices</Link></li>
                         <li><Link to="/sizes">Sizes</Link></li>
                         <li><Link to="/customisation">Customisation</Link></li>
                     </ul>
                 </nav> 
             </header>
             <main>
-                <Route exact path="/" component={ ProductsContainer } />
+                <Route exact path="/" component={ ChoicesContainer } />
                 <Route exact path="/sizes" component={ SizesContainer } />
                 <Route exact path="/customisation" component={ CustomisationContainer } />
             </main>

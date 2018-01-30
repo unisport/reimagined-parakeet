@@ -59,8 +59,7 @@ store.dispatch(actions.requestProducts())
 
 const mapStateToProps = (state) => (
     {
-        products: state.products,
-        loading: true
+        products: state.products
     }
 )
 

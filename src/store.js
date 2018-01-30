@@ -7,8 +7,7 @@ import {
     applyMiddleware
 } from 'redux'
 
-import ProductsMiddleware from './middleware/ProductsMiddleware'
-import CartMiddleware from './middleware/CartMiddleware'
+import ChoicesMiddleware from './middleware/ChoicesMiddleware'
 
 const enhancer =
     typeof window === 'object' &&
@@ -18,15 +17,14 @@ const enhancer =
 import reducers from './reducers'
 
 const initialState = {
-    products: [],
     sizes: [],
     settings: {
         currency: '',
         locale: '',
         vat: ''
     },
-    cart: [],
-    customisations: {}
+    customizations: [],
+    choices: []
 }
 
 const store = createStore(
@@ -34,8 +32,7 @@ const store = createStore(
     initialState,
     compose(
         enhancer(applyMiddleware(
-            ProductsMiddleware,
-            CartMiddleware
+            ChoicesMiddleware
         ))
     )
 );
