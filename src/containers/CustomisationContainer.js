@@ -4,7 +4,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { REQUEST_CUSTOMISATION } from './../actions/productactions'
+import {
+    REQUEST_CUSTOMISATION,
+    ADD_CUSTOMISATION
+} from './../actions/productactions'
 import Customisation from './../components/Customisation'
 
 class CustomisationContainer extends React.Component {

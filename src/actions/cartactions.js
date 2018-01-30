@@ -38,3 +38,12 @@ export const removeCartItem = (choice_id) => (
         choice_id
     }
 )
+
+const ADD_CUSTOMISATION = 'ADD_CUSTOMISATION'
+export const addCustomisation = (sizeId, customisation) => (
+    {
+        type: ADD_CUSTOMISATION,
+        sizeId,
+        customisation
+    }
+)

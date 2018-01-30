@@ -69,6 +69,9 @@ const cart = (state = [], action) => {
                 ...state,
                 product
             ]
+        case 'ADD_CUSTOMISATION':
+            console.log('add customisation', state, action)
+            return state
     }
 }
 

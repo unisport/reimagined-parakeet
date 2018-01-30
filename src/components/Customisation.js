@@ -2,7 +2,9 @@
  *
  */
 import React from 'react'
+import { connect } from 'react-redux'
 
+import { ADD_CUSTOMISATION } from './../actions/cartactions'
 import CustomiseSwitch from './CustomiseSwitch'
 import NameField from './NameField'
 import NumberField from './NumberField'
@@ -26,9 +28,11 @@ const Customisation = (props) => {
                             ['name', 'number'].includes(cust.type) == true
                         ).map((cust, i) => {
                                 if (cust.type == 'name') {
-                                    return <NameField key={ i } {...cust} id={ props.id } />
+                                    return <NameField key={ i } {...cust}
+                                                id={ props.id } sizeId={ size.id }  />
                                 } else if(cust.type == 'number') {
-                                    return <NumberField key={ i } {...cust} id={ props.id } />
+                                    return <NumberField key={ i } {...cust}
+                                                id={ props.id } sizeId={ size.id } />
                                 }
                             }
                         )}
@@ -39,4 +43,15 @@ const Customisation = (props) => {
     )
 }
 
-export default Customisation;
+const mapDispatch = (dispatch) => (
+    {
+        addCustomisation: (sizeId, customisation) => dispatch({
+            type: 'ADD_CUSTOMISATION',
+            sizeId,
+            customisation
+        })
+    }
+)
+
+export default connect(null,
+    mapDispatch)(Customisation);
