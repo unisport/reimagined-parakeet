@@ -38,9 +38,9 @@ class ProductsContainer extends React.Component {
     render() {
         let products = this.state.products.choices
 
-        return <div className="product-slider-outer">
+        return <div className="product-selection-outer">
             <div>{ this.state.loading ? 'Loading' : 'Done' }</div>
-                <div className="product-slider-inner">
+                <div className="product-selection-grid">
                 { this.state.products.map((props, i) =>
                     <div key={i}>
                     <header><h3>{ props.title }</h3></header>

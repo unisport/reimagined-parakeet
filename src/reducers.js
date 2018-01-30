@@ -51,18 +51,33 @@ const cart = (state = [], action) => {
                     product.choice_id != action.choice_id)
             ]
         case 'UPDATE_CART_ITEM':
+            // Find the product
             let product = state.find((p) =>
                 p.id == action.productId
             )
+            // Remove any duplicate size id
+            let sizes = product.sizes.filter((size) =>
+                size.id != action.sizeId
+            )
+            // Push the size onto the sizes
             product.sizes.push({id: action.sizeId, quantity: action.quantity})
+            // Update quantity
+            // FIXME: figure out what to do about initial quantity
             product.quantity += action.quantity
 
             return [
-                ...state.filter((p) =>
-                    p.id != product.id
-                ),
+                ...state,
                 product
             ]
+    }
+}
+
+const customisations = (state = [], action) => {
+    switch (action.type) {
+        default:
+            return state
+        case 'RECEIVE_CUSTOMISATION':
+            return action.customisations
     }
 }
 
@@ -70,7 +85,8 @@ const reducers = combineReducers({
     products,
     sizes,
     settings,
-    cart
+    cart,
+    customisations
 })
 
 export default reducers;

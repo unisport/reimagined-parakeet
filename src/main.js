@@ -17,11 +17,24 @@ import CustomisationContainer from './containers/CustomisationContainer'
 import Cart from './components/Cart'
 
 const Main = (props) => {
+
     const handleSubmit = e => {
-        props.submitCart()
-        if (props.routes.includes(props.match.path)) {
+        /* Dispatch action based on pathname
+         * eg from products -> sizes -> customisation */
+        switch (props.location.pathname) {
+            default:
+            case '/':
+                props.submitSelection()
+                break;
+            case '/sizes':
+                props.submitSizes()
+                break;
+            
+        }
+
+        if (props.routes.includes(props.location.pathname)) {
             let indx = props.routes.findIndex((path) => 
-                path == props.match.path
+                path == props.location.pathname
             )
             props.history.push(props.routes[indx + 1])
         }
@@ -54,8 +67,11 @@ const Main = (props) => {
 
 const mapDispatch = dispatch => {
     return {
-        submitCart: () => dispatch({
-            type: 'SUBMIT_CART'
+        submitSelection: () => dispatch({
+            type: 'SUBMIT_SELECTION'
+        }),
+        submitSizes: () => dispatch({
+            type: 'SUBMIT_SIZES'
         })
     }
 }

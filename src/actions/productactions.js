@@ -41,3 +41,18 @@ export const receiveSizes = (sizes) => (
         sizes
     }
 )
+
+const REQUEST_CUSTOMISATION = 'REQUEST_CUSTOMISATION'
+export const requestCustomisation = () => (
+    {
+        type: REQUEST_CUSTOMISATION
+    }
+)
+
+const RECEIVE_CUSTOMISATION = 'RECEIVE_CUSTOMISATION'
+export const receiveCustomisation = (customisations) => (
+    {
+        type: RECEIVE_CUSTOMISATION,
+        customisations
+    }
+)

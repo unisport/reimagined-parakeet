@@ -6,7 +6,8 @@ import axios from 'axios'
 import * as actions from './../actions/productactions'
 import {
     PRODUCT_SIZES,
-    PRODUCTS_URL
+    PRODUCTS_URL,
+    CUSTOMISATION_URL
 } from './../urls'
 
 const ProductsMiddleware = store => next => action => {
@@ -22,11 +23,17 @@ const ProductsMiddleware = store => next => action => {
                 store.dispatch(actions.receiveProducts(resp.data.subgroups))
             })
     }
-    // TODO: should go to sizes middleware
+
     if (action.type == 'REQUEST_SIZES') {
         axios.get(PRODUCT_SIZES).then(resp =>
             store.dispatch(actions.receiveSizes(resp.data.subgroups))
         ) 
+    }
+
+    if (action.type == 'REQUEST_CUSTOMISATION') {
+        axios.get(CUSTOMISATION_URL).then(resp => {
+            store.dispatch(actions.receiveCustomisation(resp.data))    
+        })
     }
 
     // Always call next inside middleware

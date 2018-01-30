@@ -37,7 +37,7 @@ class SizesContainer extends React.Component {
             <div key={ i }>
                 <header>{ size.title }</header>
                 { size.products.map((product, j) =>
-                    <div key={ j }>
+                    <div key={ j } className="size-grid">
                         <h4>{ product.name }</h4>
                     { product.sizes.map((size, k) =>
                         <SizeList {...size} key={ k } productId={ product.id } />
@@ -46,7 +46,7 @@ class SizesContainer extends React.Component {
                 )}
             </div>
         )
-        return <div>{ sizes }</div>
+        return <div className="size-wrapper">{ sizes }</div>
     }
 }
 

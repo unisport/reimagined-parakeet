@@ -9,7 +9,7 @@ const SELECT_URL = 'https://cors-anywhere.herokuapp.com/https://www.unisport.dk/
 
 const CartMiddleware = store => next => action => {
 
-    if (action.type == 'SUBMIT_CART') {
+    if (action.type == 'SUBMIT_SELECTION') {
         let cart = store.getState().cart
         let params = {
             'customer_selected': {}
@@ -24,6 +24,10 @@ const CartMiddleware = store => next => action => {
             console.log(resp)
         )*/
         // console.log('submitting', params)
+    }
+
+    if (action.type == 'SUBMIT_SIZES') {
+        let cart = store.getState().cart
     }
 
     next(action);

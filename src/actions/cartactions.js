@@ -8,11 +8,18 @@ export const addItemToCart = (product) => (
         product
     }
 )
-
-const SUBMIT_CART = 'SUBMIT_CART'
-export const submitCart = () => (
+// Not a super descriptive name...
+const SUBMIT_SELECTION = 'SUBMIT_SELECTION'
+export const submitSelection = () => (
     {
-        type: SUBMIT_CART
+        type: SUBMIT_SELECTION
+    }
+)
+
+const SUBMIT_SIZES = 'SUBMIT_SIZES'
+export const submitSizes = () => (
+    {
+        type: SUBMIT_SIZES
     }
 )
 

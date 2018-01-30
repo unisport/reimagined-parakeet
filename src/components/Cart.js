@@ -14,7 +14,8 @@ class Cart extends React.Component {
         this.state = {
             total: 0,
             currency: 'DKK',
-            products: []
+            products: [],
+            locale: 'da-DK'
         }
     }
 
@@ -24,10 +25,15 @@ class Cart extends React.Component {
             total += ((p.unit_net_price / 100) * p.quantity)
         })
 
+        /**
+         * Using localToString means changing _ to - in
+         * locale, otherwise an error is thrown
+         */
         this.setState({
             currency: nextProps.settings.currency,
             products: nextProps.cart,
-            total: total
+            total: total,
+            locale: nextProps.settings.locale.replace('_', '-')
         })
     }
 
@@ -37,7 +43,7 @@ class Cart extends React.Component {
 
     render() {
         return <div className="cart-inner">
-                Total { this.state.total.toLocaleString('da-DK') } { this.state.currency }
+                Total { this.state.total.toLocaleString(this.state.locale) } { this.state.currency }
                 <div>
                     { this.props.children }
                 </div>

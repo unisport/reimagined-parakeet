@@ -25,7 +25,8 @@ const initialState = {
         locale: '',
         vat: ''
     },
-    cart: []
+    cart: [],
+    customisations: {}
 }
 
 const store = createStore(
