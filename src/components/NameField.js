@@ -5,7 +5,9 @@ import React from 'react'
 
 const NameField = (props) => {
     return (
-        <div>NameField</div>
+        <label>{ props.display_name }
+            <input type="text" />
+        </label>
     )
 }
 
