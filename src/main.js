@@ -13,8 +13,7 @@ import { connect } from 'react-redux'
 
 import ChoicesContainer from './containers/ChoicesContainer'
 import SizesContainer from './containers/SizesContainer'
-import CustomisationContainer from './containers/CustomisationContainer'
-import Cart from './components/Cart'
+import CustomizationContainer from './containers/CustomizationContainer'
 
 const Main = (props) => {
 
@@ -47,14 +46,14 @@ const Main = (props) => {
                     <ul>
                         <li><Link to="/">Choices</Link></li>
                         <li><Link to="/sizes">Sizes</Link></li>
-                        <li><Link to="/customisation">Customisation</Link></li>
+                        <li><Link to="/customization">Customization</Link></li>
                     </ul>
                 </nav> 
             </header>
             <main>
                 <Route exact path="/" component={ ChoicesContainer } />
                 <Route exact path="/sizes" component={ SizesContainer } />
-                <Route exact path="/customisation" component={ CustomisationContainer } />
+                <Route exact path="/customization" component={ CustomizationContainer } />
             </main>
             <aside>
                 Cart goes here

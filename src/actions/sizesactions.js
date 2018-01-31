@@ -18,10 +18,11 @@ export const receiveSizes = (sizes) => (
 )
 
 const SELECT_SIZE = 'SELECT_SIZE'
-export const selectSize = (product, size) => (
+export const selectSize = (product, size, quantity) => (
     {
         type: SELECT_SIZE,
         product,
-        size
+        size,
+        quantity
     }
 )

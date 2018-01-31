@@ -4,7 +4,7 @@
 import React from 'react'
 
 const NumberField = (props) => {
-    console.log(props)
+    // console.log(props)
     return (
         <label>{ props.display_name }
             <input type="number" />

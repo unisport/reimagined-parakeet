@@ -56,8 +56,8 @@ const customizations = (state = [], action) => {
     switch (action.type) {
         default:
             return state
-        case 'RECEIVE_CUSTOMISATION':
-            return action.customisations
+        case 'RECEIVE_CUSTOMIZATIONS':
+            return action.customizations
     }
 }
 
@@ -67,8 +67,8 @@ const customersizes = (state = [], action) => {
             return state
         case 'SELECT_SIZE':
             return [
-                ...state.filter(product => product != action.product),
-                {product: action.product, size: action.size}
+                ...state.filter(product => product.size != action.size),
+                {product: action.product, size: action.size, quantity: action.quantity}
             ]
     }
     return state

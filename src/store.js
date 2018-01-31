@@ -9,6 +9,7 @@ import {
 
 import ChoicesMiddleware from './middleware/choicesmiddleware'
 import SizesMiddleware from './middleware/sizesmiddleware'
+import CustomizationsMiddleware from './middleware/customizationsmiddleware'
 
 const enhancer =
     typeof window === 'object' &&
@@ -36,7 +37,8 @@ const store = createStore(
     compose(
         enhancer(applyMiddleware(
             ChoicesMiddleware,
-            SizesMiddleware
+            SizesMiddleware,
+            CustomizationsMiddleware
         ))
     )
 );
