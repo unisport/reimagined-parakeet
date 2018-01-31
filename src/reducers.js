@@ -67,7 +67,7 @@ const customersizes = (state = [], action) => {
             return state
         case 'SELECT_SIZE':
             return [
-                ...state.filter(product => product == action.product),
+                ...state.filter(product => product != action.product),
                 {product: action.product, size: action.size}
             ]
     }
