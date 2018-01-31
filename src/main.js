@@ -57,9 +57,7 @@ const Main = (props) => {
                 <Route exact path="/customisation" component={ CustomisationContainer } />
             </main>
             <aside>
-                <Cart>
-                    <button onClick={ handleSubmit }>Submit</button>
-                </Cart>
+                Cart goes here
             </aside>
         </section>
     )

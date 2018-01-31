@@ -7,7 +7,8 @@ import {
     applyMiddleware
 } from 'redux'
 
-import ChoicesMiddleware from './middleware/ChoicesMiddleware'
+import ChoicesMiddleware from './middleware/choicesmiddleware'
+import SizesMiddleware from './middleware/sizesmiddleware'
 
 const enhancer =
     typeof window === 'object' &&
@@ -24,7 +25,8 @@ const initialState = {
         vat: ''
     },
     customizations: [],
-    choices: []
+    choices: [],
+    customerselected: []
 }
 
 const store = createStore(
@@ -32,7 +34,8 @@ const store = createStore(
     initialState,
     compose(
         enhancer(applyMiddleware(
-            ChoicesMiddleware
+            ChoicesMiddleware,
+            SizesMiddleware
         ))
     )
 );
