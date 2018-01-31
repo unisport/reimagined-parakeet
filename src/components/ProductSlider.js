@@ -16,9 +16,17 @@ const ProductSlider = (props) => {
         props.selectProduct(props.choiceid, product.id)
     }
     // TODO: Move to redux selector or similar
-    const productSelector = (products) => {
-        let product = products.find(product => product.choice == props.choiceid)
+    const customerChoice = (products, choice) => {
+        let product = products.find(product => product.choice == choice)
         return product ? product.product : 0
+    }
+
+    const getProduct = (products, id) => {
+        let product = { name: '' }
+        if (id > 0)
+            product = products.find(product => product.id == id)
+
+        return product
     }
 
     return (
@@ -32,7 +40,11 @@ const ProductSlider = (props) => {
                 )}
             </div>
             <div className="product-selected">
-                Selected: { productSelector(props.customerselected) }
+                <h3>Selected Kit</h3>
+                { getProduct(props.products,
+                    customerChoice(props.customerselected,
+                        props.choiceid)).name }
+                <hr noshade />
             </div>
         </div>
     )

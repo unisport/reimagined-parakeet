@@ -14,7 +14,9 @@ const choices = (state = [], action) => {
             return state
     }
 };
-
+/**
+ * TODO: rename to customerchoices
+ */
 const customerselected = (state = [], action) => {
     switch (action.type) {
         default:
