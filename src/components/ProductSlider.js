@@ -44,7 +44,7 @@ const ProductSlider = (props) => {
                 { getProduct(props.products,
                     customerChoice(props.customerselected,
                         props.choiceid)).name }
-                <hr noshade />
+                <hr noshade="true" />
             </div>
         </div>
     )

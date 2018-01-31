@@ -5,6 +5,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import * as actions from './../actions/sizesactions'
+import SizeSlider from './../components/SizeSlider'
 
 class SizesContainer extends React.Component {
 
@@ -13,8 +14,22 @@ class SizesContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props)
-        return <div className="size-wrapper">Hello</div>
+        return <div>
+                { this.props.sizes.map((size, i) => {
+                        return <div className="size-wrapper" key={ i }>
+                            <header>{ size.title }</header>
+                            { size.products.map((product, j) => {
+                                    return <div className="product-wrapper" key={ j }>
+                                        <header>{ product.name }</header>
+                                        <SizeSlider sizes={ product.sizes }
+                                            product={ product.id } />
+                                    </div>
+                                }
+                            )}
+                        </div>
+                    }) 
+                }
+            </div>
     }
 }
 

@@ -26,7 +26,8 @@ const initialState = {
     },
     customizations: [],
     choices: [],
-    customerselected: []
+    customerselected: [],
+    customersizes: []
 }
 
 const store = createStore(

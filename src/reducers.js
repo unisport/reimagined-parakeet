@@ -61,12 +61,18 @@ const customizations = (state = [], action) => {
     }
 }
 
+const customersizes = (state = [], action) => {
+    console.log(action)
+    return state
+}
+
 const reducers = combineReducers({
     choices,
     sizes,
     settings,
     customizations,
-    customerselected
+    customerselected,
+    customersizes
 })
 
 export default reducers;
