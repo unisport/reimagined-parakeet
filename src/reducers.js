@@ -62,7 +62,15 @@ const customizations = (state = [], action) => {
 }
 
 const customersizes = (state = [], action) => {
-    console.log(action)
+    switch (action.type) {
+        default:
+            return state
+        case 'SELECT_SIZE':
+            return [
+                ...state.filter(product => product == action.product),
+                {product: action.product, size: action.size}
+            ]
+    }
     return state
 }
 
