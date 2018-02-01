@@ -30,11 +30,14 @@ const Main = (props) => {
                 break;
             
         }
-
+        /**
+         * Redirect user to next step in flow
+         */
         if (props.routes.includes(props.location.pathname)) {
             let indx = props.routes.findIndex((path) => 
                 path == props.location.pathname
             )
+            /* TODO: handle index to avoid unidefined */
             props.history.push(props.routes[indx + 1])
         }
     }
