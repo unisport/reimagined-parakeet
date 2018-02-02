@@ -37,7 +37,7 @@ const Main = (props) => {
             let indx = props.routes.findIndex((path) => 
                 path == props.location.pathname
             )
-            /* TODO: handle index to avoid unidefined */
+            /* TODO: handle index to avoid undefined */
             props.history.push(props.routes[indx + 1])
         }
     }

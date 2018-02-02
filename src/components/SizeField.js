@@ -18,7 +18,14 @@ class SizeField extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.customersizes)
+        if (this.props.customersizes.length > 0) {
+            let size = this.props.customersizes.find(size =>
+                    size.size == this.props.id
+                )
+            if (size !== undefined) {
+                this.setState({quantity: size.quantity})
+            }
+        }
     }
 
     handleChange(e) {
