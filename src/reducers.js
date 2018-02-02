@@ -71,7 +71,25 @@ const customersizes = (state = [], action) => {
                 {product: action.product, size: action.size, quantity: action.quantity}
             ]
     }
-    return state
+}
+
+const customercustomizations = (state = [], action) => {
+    switch (action.type) {
+        default:
+            return state
+        case 'SELECT_CUSTOMIZATION':
+            return [
+                ...state.filter(customization =>
+                    customization.product != action.product &&
+                    customization.size != action.size),
+                {
+                    product: action.product,
+                    size: action.size,
+                    customizationtype: action.customizationtype,
+                    customizationvalue: action.customizationvalue
+                }
+            ]
+    }
 }
 
 const reducers = combineReducers({
@@ -80,7 +98,8 @@ const reducers = combineReducers({
     settings,
     customizations,
     customerselected,
-    customersizes
+    customersizes,
+    customercustomizations
 })
 
 export default reducers;

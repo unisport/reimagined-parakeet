@@ -2,13 +2,63 @@
  *
  */
 import React from 'react'
+import { connect } from 'react-redux'
 
-const NameField = (props) => {
-    return (
-        <label>{ props.display_name }
-            <input type="text" />
-        </label>
-    )
+import { SELECT_CUSTOMIZATION } from './../actions/customercustomizationsactions'
+
+class NameField extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            name: '',
+            tid: (new Date()).getTime()
+        }
+
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    componentDidMount() {
+    }
+
+    handleChange(e) {
+        this.setState({name: e.target.value})
+        this.props.selectCustomization(
+            this.props.product,
+            this.props.size,
+            this.props.type,
+            e.target.value,
+            this.state.tid
+        )
+    }
+
+    render() {
+        return <label>{ this.props.display_name }
+                <input type="text" value={ this.state.name }
+                    onChange={ this.handleChange } />
+            </label>
+    }
 }
 
-export default NameField;
+const mapState = (state) => (
+    {
+        customercustomization: state.customercustomizations
+    }
+)
+
+const mapDispatch = (dispatch) => (
+    {
+        selectCustomization: (product, size, customizationtype,
+            customizationvalue, id) => dispatch({
+                type: 'SELECT_CUSTOMIZATION',
+                product,
+                size,
+                customizationtype,
+                customizationvalue,
+                id
+        })
+    }
+)
+
+export default connect(mapState,
+    mapDispatch)(NameField);

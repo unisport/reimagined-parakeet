@@ -4,11 +4,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { ADD_CUSTOMISATION } from './../actions/cartactions'
+import { SELECT_CUSTOMIZATION } from './../actions/customercustomizationsactions'
 import NameField from './NameField'
 import NumberField from './NumberField'
 import LogoSwitches from './LogoSwitches'
-
+/* FIXME: Rename */
 const Customisation = (props) => {
     let switches = props.customizations_available.filter(cust =>
         ['club_logo', 'sponsor_logo', 'unisport_logo'].includes(cust.type) == true
@@ -32,10 +32,13 @@ const Customisation = (props) => {
                                                 ).map((cust, i) => {
                                                     if (cust.type == 'name') {
                                                         return <NameField key={ i } {...cust}
-                                                                product={ props.product } />
+                                                                product={ props.product }
+                                                                size={ size.id }
+                                                                tid={ k } />
                                                     } else if (cust.type == 'number') {
                                                         return <NumberField key={i} {...cust}
-                                                                product={ props.product } />
+                                                                product={ props.product }
+                                                                size={ size.id } />
                                                     }
                                                 })
                                             }
@@ -52,10 +55,13 @@ const Customisation = (props) => {
 
 const mapDispatch = (dispatch) => (
     {
-        addCustomisation: (sizeId, customisation) => dispatch({
-            type: 'ADD_CUSTOMISATION',
-            sizeId,
-            customisation
+        selectCustomization: (product, size, customizationtype,
+            customizationvalue) => dispatch({
+                type: 'SELECT_CUSTOMIZATION',
+                product,
+                size,
+                customizationtype,
+                customizationvalue
         })
     }
 )
