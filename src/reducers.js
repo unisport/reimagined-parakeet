@@ -80,13 +80,13 @@ const customercustomizations = (state = [], action) => {
         case 'SELECT_CUSTOMIZATION':
             return [
                 ...state.filter(customization =>
-                    customization.product != action.product &&
-                    customization.size != action.size),
+                    customization.id != action.id),
                 {
                     product: action.product,
                     size: action.size,
                     customizationtype: action.customizationtype,
-                    customizationvalue: action.customizationvalue
+                    customizationvalue: action.customizationvalue,
+                    id: action.id
                 }
             ]
     }

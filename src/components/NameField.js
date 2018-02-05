@@ -12,7 +12,7 @@ class NameField extends React.Component {
 
         this.state = {
             name: '',
-            tid: (new Date()).getTime()
+            id: (new Date()).getTime()
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -22,14 +22,14 @@ class NameField extends React.Component {
     }
 
     handleChange(e) {
-        this.setState({name: e.target.value})
         this.props.selectCustomization(
             this.props.product,
             this.props.size,
             this.props.type,
             e.target.value,
-            this.state.tid
+            this.state.id
         )
+        this.setState({name: e.target.value})
     }
 
     render() {

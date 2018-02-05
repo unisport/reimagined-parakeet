@@ -8,8 +8,8 @@ import { SELECT_CUSTOMIZATION } from './../actions/customercustomizationsactions
 import NameField from './NameField'
 import NumberField from './NumberField'
 import LogoSwitches from './LogoSwitches'
-/* FIXME: Rename */
-const Customisation = (props) => {
+
+const Customization = (props) => {
     let switches = props.customizations_available.filter(cust =>
         ['club_logo', 'sponsor_logo', 'unisport_logo'].includes(cust.type) == true
     )
@@ -33,8 +33,7 @@ const Customisation = (props) => {
                                                     if (cust.type == 'name') {
                                                         return <NameField key={ i } {...cust}
                                                                 product={ props.product }
-                                                                size={ size.id }
-                                                                tid={ k } />
+                                                                size={ size.id } />
                                                     } else if (cust.type == 'number') {
                                                         return <NumberField key={i} {...cust}
                                                                 product={ props.product }
@@ -67,4 +66,4 @@ const mapDispatch = (dispatch) => (
 )
 
 export default connect(null,
-    mapDispatch)(Customisation);
+    mapDispatch)(Customization);
